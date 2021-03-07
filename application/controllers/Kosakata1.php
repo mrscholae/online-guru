@@ -290,39 +290,27 @@ class Kosakata1 extends CI_CONTROLLER{
 
             // nilai tugas harian 
                 foreach ($data['pertemuan'] as $i => $pertemuan) {
-                    $data['nilai'][$i]['pertemuan'] = $pertemuan['materi'];
-                    $nilai = $this->Admin_model->get_one("latihan_peserta", ["id_kelas" => $id, "id_user" => $id_user, "pertemuan" => $pertemuan['materi'], "latihan" => "Harian"]);
+                    $data['latihan_1'][$i]['pertemuan'] = $pertemuan['materi'];
+                    $nilai = $this->Admin_model->get_one("latihan_peserta", ["id_kelas" => $id, "id_user" => $id_user, "pertemuan" => $pertemuan['materi'], "latihan" => "Latihan 1"]);
                     if($nilai) {
-                        $data['nilai'][$i]['nilai'] = $nilai['nilai'];
+                        $data['latihan_1'][$i]['nilai'] = $nilai['nilai'];
                     } else {
-                        $data['nilai'][$i]['nilai'] = 0;
+                        $data['latihan_1'][$i]['nilai'] = 0;
                     }
                 }
             // nilai tugas harian 
             
             // nilai tugas tambahan
                 foreach ($data['pertemuan'] as $i => $pertemuan) {
-                    $data['nilai_tambahan'][$i]['pertemuan'] = $pertemuan['materi'];
-                    $nilai = $this->Admin_model->get_one("latihan_peserta", ["id_kelas" => $id, "id_user" => $id_user, "pertemuan" => $pertemuan['materi'], "latihan" => "Tambahan"]);
+                    $data['latihan_2'][$i]['pertemuan'] = $pertemuan['materi'];
+                    $nilai = $this->Admin_model->get_one("latihan_peserta", ["id_kelas" => $id, "id_user" => $id_user, "pertemuan" => $pertemuan['materi'], "latihan" => "Latihan 2"]);
                     if($nilai) {
-                        $data['nilai_tambahan'][$i]['nilai'] = $nilai['nilai'];
+                        $data['latihan_2'][$i]['nilai'] = $nilai['nilai'];
                     } else {
-                        $data['nilai_tambahan'][$i]['nilai'] = 0;
+                        $data['latihan_2'][$i]['nilai'] = 0;
                     }
                 }
             // nilai tugas tambahan
-            
-            // nilai tugas hafalan
-                foreach ($data['pertemuan'] as $i => $pertemuan) {
-                    $data['nilai_hafalan'][$i]['pertemuan'] = $pertemuan['materi'];
-                    $nilai = $this->Admin_model->get_one("latihan_peserta", ["id_kelas" => $id, "id_user" => $id_user, "pertemuan" => $pertemuan['materi'], "latihan" => "Hafalan"]);
-                    if($nilai) {
-                        $data['nilai_hafalan'][$i]['nilai'] = $nilai['nilai'];
-                    } else {
-                        $data['nilai_hafalan'][$i]['nilai'] = 0;
-                    }
-                }
-            // nilai tugas hafalan
 
             // nilai ujian
                 $nilai = $this->Admin_model->get_one("latihan_peserta", ["id_kelas" => $id, "id_user" => $id_user, "pertemuan" => "Ujian Pekan 1", "latihan" => "Form"]);

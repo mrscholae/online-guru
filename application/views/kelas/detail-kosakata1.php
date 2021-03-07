@@ -19,55 +19,7 @@
             <div class="row" id="dataPertemuan"></div>
             <div class="row" id="dataAbsen"></div>
             <div class="row" id="dataLatihan"></div>
-            <div class="row" id="inputNilai">
-                <div class="col-12">
-                    <select name="input_latihan" id="input_latihan" class="form-control form-control-md">
-                        <option value="">Pilih Input Nilai</option>
-                        <option value="Tambahan">Latihan Tambahan</option>
-                        <option value="Hafalan">Latihan Hafalan</option>
-                        <option value="Ujian Pekan 1">Ujian Lisan Pekan 1</option>
-                        <option value="Ujian Pekan 2">Ujian Lisan Pekan 2</option>
-                        <option value="Ujian Pertengahan">Ujian Pertengahan</option>
-                        <option value="Ujian Pekan 3">Ujian Lisan Pekan 3</option>
-                        <!-- <option value="Ujian Pekan 4">Ujian Lisan Pekan 4</option> -->
-                        <option value="Ujian Akhir">Ujian Akhir Video</option>
-                    </select>
-                </div>
-                <div class="col-12">
-                    <select name="input_pertemuan" id="input_pertemuan" class="form-control form-control-md">
-                        <option value="">Pilih Pertemuan</option>
-                        <?php for ($i=1; $i < 25; $i++) :?>
-                            <option value="Pertemuan <?= $i?>">Pertemuan <?= $i?></option>
-                        <?php endfor;?>
-                    </select>
-                </div>
-                <div class="col-12 d-flex justify-content-end mt-2 mb-2">
-                    <button class="btn btn-sm btn-success" id="btnInputNilai">Tampilkan Form</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="msg-input-nilai"></div>
-                </div>
-                <div class="col-12">
-                    <ul class="list-group">
-                        <li class="list-group-item list-group-item-info" id="titleForm"></li>
-                        <div id="dataPeserta"></div>
-                    </ul>
-                </div>
-            </div>
-            <div class="row" id="dataFaq">
-                <div class="col-12">
-                    <ul class="list-group">
-                        <li class="list-group-item list-group-item-info d-flex justify-content-between">
-                        FAQ
-                            <a href="#modalFaq" data-toggle="modal"><i class="fa fa-plus-square"></i></a>
-                        </li>
-                        <input type="text" name="search_faq" id="search_faq" class="form-control form-control-lg mt-1 mb-1" placeholder="cari faq ..." autocomplete="off">
-                        <div id="list-faq"></div>
-                    </ul>
-                </div>
-            </div>
+
             <div class="row" id="listPeserta">
                 <div class="col-12">
                     <ul class="list-group">
@@ -291,20 +243,19 @@
                             <div class="row">
                                 <div class="col-12">
                                     <select name="jenis_nilai" id="jenis_nilai" class="form-control form-control-md mb-2">
-                                        <option value="Harian">Tugas Harian Form</option>
-                                        <option value="Tambahan">Tugas Harian Tambahan</option>
-                                        <option value="Hafalan">Tugas Harian Hafalan</option>
+                                        <option value="Latihan 1">Latihan 1</option>
+                                        <option value="Latihan 2">Latihan 2</option>
                                     </select>
                                 </div>
                             </div>
                             <ul class="list-group">
-                                <li class="list-group-item list-group-item-info titleNilai">Nilai Tugas Harian</li>
+                                <li class="list-group-item list-group-item-info titleNilai">Nilai Latihan 1</li>
                             </ul>
                             <ul class="list-group">
-                                <div id="list-tugas-harian"></div>
+                                <div id="list-tugas-latihan-1"></div>
                             </ul>
                             <ul class="list-group">
-                                <div id="list-tugas-tambahan"></div>
+                                <div id="list-tugas-latihan-2"></div>
                             </ul>
                             <ul class="list-group">
                                 <div id="list-tugas-hafalan"></div>
@@ -615,10 +566,10 @@
             detail_peserta(id)
             btn_21();
             // nilai
-                $("#jenis_nilai").val("Harian")
-                $(".titleNilai").html("Nilai Tugas Harian");
-                $("#list-tugas-harian").show();
-                $("#list-tugas-tambahan").hide();
+                $("#jenis_nilai").val("Latihan 1")
+                $(".titleNilai").html("Nilai Latihan 1");
+                $("#list-tugas-latihan-1").show();
+                $("#list-tugas-latihan-2").hide();
                 $("#list-tugas-hafalan").hide();
             // nilai
             // delete_msg();
@@ -626,20 +577,20 @@
 
         $("#jenis_nilai").change(function(){
             let data = $(this).val();
-            if(data == "Harian"){
-                $(".titleNilai").html("Nilai Tugas Harian");
-                $("#list-tugas-harian").show();
-                $("#list-tugas-tambahan").hide();
+            if(data == "Latihan 1"){
+                $(".titleNilai").html("Nilai Latihan 1");
+                $("#list-tugas-latihan-1").show();
+                $("#list-tugas-latihan-2").hide();
                 $("#list-tugas-hafalan").hide();
-            } else if(data == "Tambahan"){
-                $(".titleNilai").html("Nilai Tugas Tambahan");
-                $("#list-tugas-harian").hide();
-                $("#list-tugas-tambahan").show();
+            } else if(data == "Latihan 2"){
+                $(".titleNilai").html("Nilai Latihan 2");
+                $("#list-tugas-latihan-1").hide();
+                $("#list-tugas-latihan-2").show();
                 $("#list-tugas-hafalan").hide();
             } else if(data == "Hafalan"){
                 $(".titleNilai").html("Nilai Tugas Hafalan");
-                $("#list-tugas-harian").hide();
-                $("#list-tugas-tambahan").hide();
+                $("#list-tugas-latihan-1").hide();
+                $("#list-tugas-latihan-2").hide();
                 $("#list-tugas-hafalan").show();
             }
         })
@@ -1474,7 +1425,7 @@
                     $("#kehadiran").html(html)
                     
                     html = "";
-                    data.nilai.forEach((nilai, i) => {
+                    data.latihan_1.forEach((nilai, i) => {
                         html += `<li class="list-group-item">
                                     <div class="d-flex justify-content-between">
                                         <label for="per`+i+`">`+nilai.pertemuan+`</label>
@@ -1483,10 +1434,10 @@
                                 </li>`;
                     });
                     
-                    $("#list-tugas-harian").html(html);
+                    $("#list-tugas-latihan-1").html(html);
                     
                     html = "";
-                    data.nilai_tambahan.forEach((nilai, i) => {
+                    data.latihan_2.forEach((nilai, i) => {
                         html += `<li class="list-group-item">
                                     <div class="d-flex justify-content-between">
                                         <label for="per`+i+`">`+nilai.pertemuan+`</label>
@@ -1495,7 +1446,7 @@
                                 </li>`;
                     });
                     
-                    $("#list-tugas-tambahan").html(html);
+                    $("#list-tugas-latihan-2").html(html);
                     
                     html = "";
                     data.nilai_hafalan.forEach((nilai, i) => {
@@ -1522,34 +1473,6 @@
                     $("#nilai-akhir-video").html(data.ujian[10]);
                 }
                 
-            })
-        }
-        
-        function faq(search, program){
-            $.ajax({
-                url: "<?= base_url()?>kelas/search_faq",
-                type: "POST",
-                dataType: "JSON",
-                data: {search: search, program: program},
-                success: function(data){
-                    html = "";
-                    if(data.faq.length != 0){
-                        data.faq.forEach(faq => {
-                            html += `<li class="list-group-item d-flex justify-content-between">
-                                        <span>
-                                            `+faq.soal+`
-                                        </span>
-                                        <span>
-                                            <a href="#modalFaq" data-toggle="modal" data-id="`+faq.id+`" class="detailFaq"><i class="fa fa-question-circle text-info"></i></a>
-                                        </span>
-                                    </li>`
-                        });
-                    } else {
-                        html += `<div class="alert alert-warning"><i class="fa fa-exclamation-circle text-warning"></i> faq tidak ada</div>`;
-                    }
-
-                    $("#list-faq").html(html)       
-                }
             })
         }
 
